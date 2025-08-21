@@ -70,6 +70,7 @@
           Superadmin
         </button>
       </div>
+      <p class="mt-6 text-sm text-white/60">Tip: Use <strong>Superadmin</strong> (no password) to approve institute signups.</p>
     </div>
   </section>
 
@@ -219,51 +220,77 @@
     </div>
   </template>
 
-  <!-- Dashboards -->
+  <!-- Dashboards (each now has a sidebar + content area) -->
   <section id="adminDashboard" class="hidden min-h-screen">
     <div id="adminHeader"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-2xl font-semibold">Admin Dashboard</h2>
-      <p class="mt-2 text-white/70">Manage institutions, upgrade faculty roles, oversee accreditation workflows.</p>
+    <div class="flex">
+      <div id="adminSidebar"></div>
+      <main id="adminContent" class="flex-1 p-6"></main>
     </div>
   </section>
 
   <section id="coordinatorDashboard" class="hidden min-h-screen">
     <div id="coordHeader"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-2xl font-semibold">Coordinator Dashboard</h2>
-      <p class="mt-2 text-white/70">Upload and verify documents for accreditation criteria.</p>
+    <div class="flex">
+      <div id="coordinatorSidebar"></div>
+      <main id="coordinatorContent" class="flex-1 p-6"></main>
     </div>
   </section>
 
   <section id="hodDashboard" class="hidden min-h-screen">
     <div id="hodHeader"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-2xl font-semibold">HOD Dashboard</h2>
-      <p class="mt-2 text-white/70">Review departmental submissions and assist in structured reporting.</p>
+    <div class="flex">
+      <div id="hodSidebar"></div>
+      <main id="hodContent" class="flex-1 p-6"></main>
     </div>
   </section>
 
   <section id="facultyDashboard" class="hidden min-h-screen">
     <div id="facultyHeader"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-2xl font-semibold">Faculty Dashboard</h2>
-      <p class="mt-2 text-white/70">Submit required documents securely for verification and reporting.</p>
+    <div class="flex">
+      <div id="facultySidebar"></div>
+      <main id="facultyContent" class="flex-1 p-6"></main>
     </div>
   </section>
 
   <section id="superadminDashboard" class="hidden min-h-screen">
     <div id="superadminHeader"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-2xl font-semibold">Superadmin Dashboard</h2>
-      <p class="mt-2 text-white/70">Approve or reject new institute signups.</p>
-      <div id="pendingList" class="mt-6 space-y-4"></div>
-      <button onclick="backToLanding()" 
-  class="mt-4 px-4 py-2 rounded-md bg-white/10 hover:bg-white/20 text-white transition">
-  Back to Home
-</button>
+    <div class="flex">
+      <div id="superadminSidebar"></div>
+      <main id="superadminContent" class="flex-1 p-6"></main>
     </div>
   </section>
+
+  <!-- Templates: Sidebar, Badge, Upload Modal -->
+  <template id="sidebarTemplate">
+    <aside class="w-64 shrink-0 border-r border-white/10 bg-white/5 min-h-[calc(100vh-4rem)] p-4 space-y-2">
+      <nav id="sidebarNav" class="space-y-1"></nav>
+    </aside>
+  </template>
+
+  <template id="badgeTemplate">
+    <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"></span>
+  </template>
+
+  <template id="uploadModalTemplate">
+    <div class="upload-modal fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
+      <div class="w-full max-w-lg rounded-xl bg-[#0f2236] border border-white/10 p-4">
+        <h3 class="text-lg font-semibold">Upload Document</h3>
+        <form id="uploadForm" class="mt-3 space-y-3">
+          <input id="docTitle" class="w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2" placeholder="Title" required>
+          <input id="docCategory" class="w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2" placeholder="Category (e.g., NAAC 3.1.2)" required>
+          <input id="docDept" class="w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2" placeholder="Department (optional)">
+          <textarea id="docRemarks" class="w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2" placeholder="Remarks (optional)"></textarea>
+          <input id="docFileName" class="w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2" placeholder="File name (simulate)" required>
+          <div class="flex justify-end gap-2 pt-2">
+            <button type="button" onclick="closeModal()" class="px-3 py-2 rounded-md border border-white/10">Cancel</button>
+            <button type="submit" class="px-3 py-2 rounded-md bg-cyan-500 text-black font-semibold">Upload</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </template>
+
 <script src="script.js"></script>
 </body>
 </html>

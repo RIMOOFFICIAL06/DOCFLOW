@@ -59,9 +59,15 @@
       <p class="mt-5 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
         Secure, role-based workflows for document submission, verification, and reporting—built for Admins, Coordinators, HODs, and Faculty.
       </p>
-      <div class="mt-8">
+      <div class="mt-8 flex gap-4 justify-center">
         <button onclick="showLogin()" class="px-6 py-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition text-lg">
           Login
+        </button>
+        <button onclick="showSignup()" class="px-6 py-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition text-lg">
+          Signup
+        </button>
+        <button onclick="showSuperadmin()" class="px-6 py-3 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-black font-semibold transition text-lg">
+          Superadmin
         </button>
       </div>
     </div>
@@ -77,10 +83,11 @@
       <h2 class="text-xl font-semibold text-center">Login</h2>
       <form onsubmit="handleLogin(event)" class="mt-5 space-y-4">
         <label class="block">
-          <span class="text-sm text-white/70">Username</span>
-          <input id="username" type="text" required
+          <span class="text-sm text-white/70">Email</span>
+          <input id="email" type="email" required
                  class="mt-1 w-full rounded-md bg-[#11263c] border border-white/10 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 px-3 py-2 outline-none" />
         </label>
+
         <label class="block">
           <span class="text-sm text-white/70">Password</span>
           <input id="password" type="password" required
@@ -100,7 +107,99 @@
         <button type="submit" class="w-full mt-2 px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition">
           Continue
         </button>
-        <button type="button" onclick="backToLanding()" class="w-full px-4 py-2 rounded-md border border-white/10 hover:border-white/30 text-white/90 transition">
+        <p class="text-sm text-center text-white/60 mt-2">
+          Don’t have an account?
+          <button type="button" onclick="showSignup()" class="text-cyan-400 hover:underline">Signup</button>
+        </p>
+        <button type="button" onclick="backToLanding()" class="w-full mt-3 px-4 py-2 rounded-md border border-white/10 hover:border-white/30 text-white/90 transition">
+          Back
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section id="signup" class="hidden min-h-[80vh] flex items-center justify-center px-4">
+    <div class="w-full max-w-lg rounded-xl border border-white/10 bg-white/[0.05] p-6 shadow-2xl">
+      <div class="flex items-center gap-2 justify-center mb-4">
+        <svg viewBox="0 0 64 64" class="h-8 w-8 text-cyan-400"><path d="M32 4 L60 60 H48 L32 28 L16 60 H4 Z" fill="currentColor"/></svg>
+        <span class="text-lg font-semibold">AccrediFlow</span>
+      </div>
+      <h2 class="text-xl font-semibold text-center">Institute Signup</h2>
+
+      <form onsubmit="handleSignup(event)" class="mt-5 space-y-4">
+        <label class="block">
+          <span class="text-sm text-white/70">Institute Name</span>
+          <input id="instituteName" type="text" required 
+            class="mt-1 w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2 outline-none"/>
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-white/70">Institute Type</span>
+          <select id="instituteType" required 
+            class="mt-1 w-full rounded-md bg-[#11263c] text-white border border-white/10 px-3 py-2 outline-none">
+            <option value="">Select Type</option>
+            <option value="university">University</option>
+            <option value="college">College</option>
+            <option value="polytechnic">Polytechnic</option>
+            <option value="school">School</option>
+          </select>
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-white/70">Accreditation Body</span>
+          <select id="accreditationBody" required 
+            class="mt-1 w-full rounded-md bg-[#11263c] text-white border border-white/10 px-3 py-2 outline-none">
+            <option value="">Select Body</option>
+            <option value="naac">NAAC</option>
+            <option value="nba">NBA</option>
+            <option value="nirf">NIRF</option>
+            <option value="qs">QS</option>
+          </select>
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-white/70">Official Email Domain</span>
+          <input id="emailDomain" type="text" placeholder="@yourcollege.edu" required
+            class="mt-1 w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2 outline-none"/>
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-white/70">Admin Name</span>
+          <input id="adminName" type="text" required 
+            class="mt-1 w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2 outline-none"/>
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-white/70">Admin Email</span>
+          <input id="adminEmail" type="email" required 
+            class="mt-1 w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2 outline-none"/>
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-white/70">Admin Phone</span>
+          <input id="adminPhone" type="tel" required 
+            class="mt-1 w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2 outline-none"/>
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-white/70">Password</span>
+          <input id="signupPassword" type="password" required 
+            class="mt-1 w-full rounded-md bg-[#11263c] border border-white/10 px-3 py-2 outline-none"/>
+        </label>
+
+        <button type="submit" class="w-full mt-2 px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition">
+          Register Institute
+        </button>
+
+        <div class="mt-3">
+          <button type="button" onclick="showLogin()" 
+            class="w-full px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition">
+            Already have an account? Login
+          </button>
+        </div>
+
+        <button type="button" onclick="backToLanding()" class="w-full mt-3 px-4 py-2 rounded-md border border-white/10 hover:border-white/30 text-white/90 transition">
           Back
         </button>
       </form>
@@ -153,45 +252,142 @@
     </div>
   </section>
 
-  <!-- Scripts -->
-  <script>
-    function showOnly(idsToShow = []) {
-      const sections = ["landing","login","adminDashboard","coordinatorDashboard","hodDashboard","facultyDashboard"];
-      sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (idsToShow.includes(id)) el.classList.remove("hidden");
-        else el.classList.add("hidden");
-      });
-      ["adminHeader","coordHeader","hodHeader","facultyHeader"].forEach(h => {
-        const node = document.getElementById(h);
-        if (node) node.replaceChildren();
-      });
-    }
-    function showLogin() { showOnly(["login"]); window.scrollTo({ top: 0, behavior: "smooth" }); }
-    function backToLanding() { showOnly(["landing"]); }
-    function handleLogin(e) {
-      e.preventDefault();
-      const role = document.getElementById("role").value;
-      const headerFrag = document.getElementById("dashboardHeader").content.cloneNode(true);
-      if (role === "admin") { document.getElementById("adminHeader").appendChild(headerFrag); showOnly(["adminDashboard"]); }
-      else if (role === "coordinator") { document.getElementById("coordHeader").appendChild(headerFrag); showOnly(["coordinatorDashboard"]); }
-      else if (role === "hod") { document.getElementById("hodHeader").appendChild(headerFrag); showOnly(["hodDashboard"]); }
-      else if (role === "faculty") { document.getElementById("facultyHeader").appendChild(headerFrag); showOnly(["facultyDashboard"]); }
-      else { alert("Please select a role."); return; }
+  <section id="superadminDashboard" class="hidden min-h-screen">
+    <div id="superadminHeader"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h2 class="text-2xl font-semibold">Superadmin Dashboard</h2>
+      <p class="mt-2 text-white/70">Approve or reject new institute signups.</p>
+      <div id="pendingList" class="mt-6 space-y-4"></div>
+      <button onclick="backToLanding()" 
+  class="mt-4 px-4 py-2 rounded-md bg-white/10 hover:bg-white/20 text-white transition">
+  Back to Home
+</button>
+    </div>
+  </section>
 
-      document.getElementById("navAuthBtn").textContent = "Logout";
-      document.getElementById("navAuthBtn").setAttribute("onclick","logout()");
-      document.getElementById("navAuthBtn").classList.remove("hidden");
-      document.getElementById("mobileAuthBtn").textContent = "Logout";
-      document.getElementById("mobileAuthBtn").setAttribute("onclick","logout()");
-      document.getElementById("mobileAuthBtn").classList.remove("hidden");
+  <script>
+  // Load from localStorage
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  function saveUsers() {
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+
+  function showOnly(idsToShow = []) {
+    const sections = ["landing","login","signup","adminDashboard","coordinatorDashboard","hodDashboard","facultyDashboard","superadminDashboard"];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (idsToShow.includes(id)) el.classList.remove("hidden");
+      else el.classList.add("hidden");
+    });
+    ["adminHeader","coordHeader","hodHeader","facultyHeader","superadminHeader"].forEach(h => {
+      const node = document.getElementById(h);
+      if (node) node.replaceChildren();
+    });
+  }
+
+  function showLogin() { showOnly(["login"]); window.scrollTo({ top: 0, behavior: "smooth" }); }
+  function showSignup() { showOnly(["signup"]); window.scrollTo({ top: 0, behavior: "smooth" }); }
+  function backToLanding() { showOnly(["landing"]); }
+
+  function handleSignup(e) {
+    e.preventDefault();
+
+    const institute = {
+      name: document.getElementById("instituteName").value,
+      type: document.getElementById("instituteType").value,
+      accreditation: document.getElementById("accreditationBody").value,
+      emailDomain: document.getElementById("emailDomain").value,
+      adminName: document.getElementById("adminName").value,
+      adminEmail: document.getElementById("adminEmail").value,
+      adminPhone: document.getElementById("adminPhone").value,
+      password: document.getElementById("signupPassword").value,
+      approved: false
+    };
+
+    users.push(institute);
+    saveUsers();   // ✅ persist in localStorage
+
+    alert("Signup submitted! Please wait for approval by Superadmin.");
+    backToLanding();
+  }
+
+  function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const pwd = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+
+    const user = users.find(u => u.adminEmail === email && u.password === pwd);
+
+    if (!user) {
+      alert("Invalid email or password.");
+      return;
     }
-    function logout() {
-      showOnly(["landing"]);
-      document.getElementById("navAuthBtn").classList.add("hidden");
-      document.getElementById("mobileAuthBtn").classList.add("hidden");
+
+    if (!user.approved) {
+      alert("Your signup is pending approval. Please wait for Superadmin approval.");
+      return;
     }
-  </script>
+
+    if (role !== "admin") {
+      alert("Only Admin login is enabled for MVP.");
+      return;
+    }
+
+    const headerFrag = document.getElementById("dashboardHeader").content.cloneNode(true);
+    document.getElementById("adminHeader").appendChild(headerFrag);
+    showOnly(["adminDashboard"]);
+
+    document.getElementById("navAuthBtn").textContent = "Logout";
+    document.getElementById("navAuthBtn").setAttribute("onclick","logout()");
+    document.getElementById("navAuthBtn").classList.remove("hidden");
+
+    document.getElementById("mobileAuthBtn").textContent = "Logout";
+    document.getElementById("mobileAuthBtn").setAttribute("onclick","logout()");
+    document.getElementById("mobileAuthBtn").classList.remove("hidden");
+  }
+
+  function showSuperadmin() {
+    const headerFrag = document.getElementById("dashboardHeader").content.cloneNode(true);
+    document.getElementById("superadminHeader").appendChild(headerFrag);
+    showOnly(["superadminDashboard"]);
+
+    const list = document.getElementById("pendingList");
+    list.innerHTML = "";
+
+    users.forEach((u, index) => {
+      if (!u.approved) {
+        const div = document.createElement("div");
+        div.className = "p-4 bg-white/10 rounded-md flex justify-between items-center";
+        div.innerHTML = `
+          <div>
+            <p class="font-semibold">${u.name} (${u.type})</p>
+            <p class="text-sm text-white/70">${u.adminEmail}</p>
+          </div>
+          <button onclick="approveInstitute(${index})" 
+            class="px-3 py-1 bg-cyan-500 hover:bg-cyan-400 text-black rounded-md font-semibold">
+            Approve
+          </button>
+        `;
+        list.appendChild(div);
+      }
+    });
+  }
+
+  function approveInstitute(index) {
+    users[index].approved = true;
+    saveUsers();   // ✅ persist in localStorage
+    alert(users[index].name + " has been approved!");
+    showSuperadmin();
+  }
+
+  function logout() {
+    showOnly(["landing"]);
+    document.getElementById("navAuthBtn").classList.add("hidden");
+    document.getElementById("mobileAuthBtn").classList.add("hidden");
+  }
+</script>
 </body>
 </html>
